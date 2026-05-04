@@ -1,0 +1,48 @@
+{
+    "gallery": [
+        {
+            "id": "GAL001",
+            "type": "image",
+            "url": "/images/maki.svg",
+            "title": "Makis Acevichados",
+            "description": "Nuestra especialidad de la casa con salsa acevichada secreta."
+        },
+        {
+            "id": "GAL002",
+            "type": "video",
+            "url": "https://www.w3schools.com/html/mov_bbb.mp4",
+            "thumbnailUrl": "/images/alitas.png",
+            "title": "Preparación de Sushi",
+            "description": "Mira cómo preparamos nuestros deliciosos makis paso a paso."
+        },
+        {
+            "id": "GAL003",
+            "type": "youtube",
+            "url": "https://www.youtube.com/embed/tgbNymZ7vqY",
+            "thumbnailUrl": "/images/maki.svg",
+            "title": "Ambiente Mr Sushi",
+            "description": "Disfruta de nuestro increíble ambiente y coctelería."
+        },
+        {
+            "id": "GAL004",
+            "type": "image",
+            "url": "/images/maki.svg",
+            "title": "Rolls California",
+            "description": "Un clásico refrescante con semillas de ajonjolí."
+        },
+        {
+            "id": "GAL005",
+            "type": "image",
+            "url": "/images/maki.svg",
+            "title": "Makis Ikigai",
+            "description": "Tártara de pulpa de cangrejo y queso parmesano."
+        },
+        {
+            "id": "GAL006",
+            "type": "image",
+            "url": "/images/maki.svg",
+            "title": "Ebi Furai",
+            "description": "Langostinos apanados al estilo japonés."
+        }
+    ]
+}

@@ -1,0 +1,578 @@
+{
+    "menu": {
+        "blocks": [
+            {
+                "id": "block-1",
+                "name": "Makis",
+                "sort_order": 1,
+                "categories": [
+                    {
+                        "id": "rolls",
+                        "name": "Rolls",
+                        "sort_order": 1,
+                        "products": [
+                            {
+                                "id": "PRD030",
+                                "name": "Acevichado",
+                                "description": "Relleno de langostino y palta. Cubierto de pescado blanco y salsa acevichada",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": true,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD031",
+                                "name": "Furai",
+                                "description": "Relleno de trucha, queso crema y palta. Cubierto de panko frito",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD032",
+                                "name": "BBQ",
+                                "description": "Relleno de langostino y palta. Cubierto de lomo, salsa BBQ y semillas de ajonjolí",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD033",
+                                "name": "Avocado",
+                                "description": "Relleno de langostino y queso crema. Cubierto de palta y salsa Tare",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD034",
+                                "name": "Ikigai",
+                                "description": "Relleno de langostino y palta. Cubierto de tártara de pulpa de cangrejo, pulpo, queso parmesano y salsa Tare",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": true,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll",
+                                    "estrella"
+                                ]
+                            },
+                            {
+                                "id": "PRD035",
+                                "name": "Guacamole",
+                                "description": "Relleno de langostino frito, queso crema. Cubierto de guacamole y hilos de camote",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD036",
+                                "name": "California",
+                                "description": "Relleno de trucha, queso crema y palta. Cubierto de semillas de ajonjolí, salsa Tare o maracuyá",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD037",
+                                "name": "Banana",
+                                "description": "Relleno de queso crema y langostino. Cubierto con plátano maduro frito y salsa Tare o maracuyá",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD038",
+                                "name": "Baby Maki",
+                                "description": "Relleno de queso crema y langostino. Cubierto de láminas de trucha y salsa Tare o maracuyá",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD039",
+                                "name": "Olivo",
+                                "description": "Relleno de langostino y palta. Cubierto de pulpo al olivo",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD040",
+                                "name": "Parrillero",
+                                "description": "Relleno de langostino, queso crema y palta. Cubierto de lomo y salsa chimichurri",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD041",
+                                "name": "Maki Parmesano",
+                                "description": "Relleno de palta y langostino frito. Cubierto de salsa parmesano y gotas de limón",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            },
+                            {
+                                "id": "PRD042",
+                                "name": "Tempura",
+                                "description": "Relleno de palta y langostino frito. Cubierto de salsa anticuchera y chalaquita",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR003",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/maki.svg",
+                                "tags": [
+                                    "maki",
+                                    "roll"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "block-2",
+                "name": "Alitas y Piqueos",
+                "sort_order": 2,
+                "categories": [
+                    {
+                        "id": "piqueos",
+                        "name": "Piqueos",
+                        "sort_order": 1,
+                        "products": [
+                            {
+                                "id": "PRD001",
+                                "name": "Gyozas",
+                                "description": "Empanizado japonés relleno de pollo, carne o langostino (vapor/frito)",
+                                "qty_label": "8 unidades",
+                                "price": 15,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/furai.png",
+                                "tags": [
+                                    "piqueo"
+                                ]
+                            },
+                            {
+                                "id": "PRD002",
+                                "name": "Torikatzu",
+                                "description": "Filete de pollo apanado y frito, acompañado con arroz blanco, col y zanahoria rallada",
+                                "qty_label": null,
+                                "price": 18,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/furai.png",
+                                "tags": [
+                                    "piqueo"
+                                ]
+                            },
+                            {
+                                "id": "PRD003",
+                                "name": "Ebi Furai",
+                                "description": "Langostinos apanados con harina, huevo y panko, acompañado con fideos de arroz frito",
+                                "qty_label": "8 unidades",
+                                "price": 20,
+                                "price_range_id": null,
+                                "is_recommended": true,
+                                "is_hidden": false,
+                                "image_url": "/images/furai.png",
+                                "tags": [
+                                    "piqueo"
+                                ]
+                            },
+                            {
+                                "id": "PRD004",
+                                "name": "Taco Nikkei",
+                                "description": "Tacos de wantan frito rellenos de tartar de pescado y cebolla acaramelizada",
+                                "qty_label": "6 unidades",
+                                "price": 20,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/furai.png",
+                                "tags": [
+                                    "piqueo"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "block-3",
+                "name": "Alitas",
+                "sort_order": 3,
+                "categories": [
+                    {
+                        "id": "alitas",
+                        "name": "Alitas",
+                        "sort_order": 2,
+                        "products": [
+                            {
+                                "id": "PRD111",
+                                "name": "Alitas BBQ",
+                                "description": "Alitas de pollo fritas en salsa BBQ",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR002",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/alitas.png",
+                                "tags": [
+                                    "alitas"
+                                ]
+                            },
+                            {
+                                "id": "PRD112",
+                                "name": "Alitas Buffalo",
+                                "description": "Alitas de pollo fritas en salsa Buffalo",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR002",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/alitas.png",
+                                "tags": [
+                                    "alitas"
+                                ]
+                            },
+                            {
+                                "id": "PRD113",
+                                "name": "Alitas Charapita",
+                                "description": "Alitas de pollo fritas en salsa Charapita",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR002",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/alitas.png",
+                                "tags": [
+                                    "alitas"
+                                ]
+                            },
+                            {
+                                "id": "PRD114",
+                                "name": "Alitas Crispy",
+                                "description": "Alitas de pollo fritas en salsa Crispy",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR002",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/alitas.png",
+                                "tags": [
+                                    "alitas"
+                                ]
+                            },
+                            {
+                                "id": "PRD115",
+                                "name": "Alitas Maracuyá",
+                                "description": "Alitas de pollo fritas en salsa Maracuyá",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR002",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/alitas.png",
+                                "tags": [
+                                    "alitas"
+                                ]
+                            },
+                            {
+                                "id": "PRD116",
+                                "name": "Alitas Maracuyá Hot",
+                                "description": "Alitas de pollo fritas en salsa Maracuyá Hot",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR002",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/alitas.png",
+                                "tags": [
+                                    "alitas"
+                                ]
+                            },
+                            {
+                                "id": "PRD117",
+                                "name": "Alitas Acevichado",
+                                "description": "Alitas de pollo fritas en salsa Acevichado",
+                                "qty_label": null,
+                                "price": null,
+                                "price_range_id": "PR002",
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": "/images/alitas.png",
+                                "tags": [
+                                    "alitas"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "block-4",
+                "name": "Bebidas",
+                "sort_order": 4,
+                "categories": [
+                    {
+                        "id": "bebidas",
+                        "name": "Bebidas",
+                        "sort_order": 1,
+                        "products": [
+                            {
+                                "id": "PRD020",
+                                "name": "Inca Kola",
+                                "description": null,
+                                "qty_label": "600 ml",
+                                "price": 4,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": null,
+                                "tags": [
+                                    "bebida"
+                                ]
+                            },
+                            {
+                                "id": "PRD020",
+                                "name": "Coca-Cola",
+                                "description": null,
+                                "qty_label": "600 ml",
+                                "price": 4,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": null,
+                                "tags": [
+                                    "bebida"
+                                ]
+                            },
+                            {
+                                "id": "PRD021",
+                                "name": "Pepsi",
+                                "description": null,
+                                "qty_label": "350 ml",
+                                "price": 2,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": null,
+                                "tags": [
+                                    "bebida"
+                                ]
+                            },
+                            {
+                                "id": "PRD022",
+                                "name": "Agua Cielo",
+                                "description": null,
+                                "qty_label": "500 ml",
+                                "price": 3,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": null,
+                                "tags": [
+                                    "bebida"
+                                ]
+                            },
+                            {
+                                "id": "PRD024",
+                                "name": "Gordita",
+                                "description": null,
+                                "qty_label": null,
+                                "price": 6,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": null,
+                                "tags": [
+                                    "bebida"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "block-5",
+                "name": "Bebidas Chinas",
+                "sort_order": 5,
+                "categories": [
+                    {
+                        "id": "bebidas-chinas",
+                        "name": "Bebidas Chinas",
+                        "sort_order": 1,
+                        "products": [
+                            {
+                                "id": "PRD023",
+                                "name": "Bebidas china 1",
+                                "description": "Latas importadas",
+                                "qty_label": "lata",
+                                "price": 3,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": null,
+                                "tags": [
+                                    "bebida"
+                                ]
+                            },
+                            {
+                                "id": "PRD024",
+                                "name": "Bebidas china 2",
+                                "description": "Latas importadas",
+                                "qty_label": "lata",
+                                "price": 3,
+                                "price_range_id": null,
+                                "is_recommended": false,
+                                "is_hidden": false,
+                                "image_url": null,
+                                "tags": [
+                                    "bebida"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "combos": [
+            {
+                "id": "CMB001",
+                "name": "Combo Pareja",
+                "description": "2 Tablas de Makis a elección + 2 Bebidas (gaseosa o chicha)",
+                "price": 45,
+                "image": "/images/maki.svg"
+            },
+            {
+                "id": "CMB002",
+                "name": "Combo familiar",
+                "description": "48 cortes (4 sabores a elección) + 2 gaseosa (250ml)",
+                "price": 85,
+                "image": "/images/maki.svg"
+            }
+        ],
+        "promotions": [
+            {
+                "id": "PRM001",
+                "name": "Sabado de promo",
+                "description": "24 piezas de tus makis favoritos, ahora tus sabado son de makis.",
+                "price": 33,
+                "discountedPrice": 26,
+                "cloudinary_id": "",
+                "url": "/images/maki.svg"
+            },
+            {
+                "id": "PRM002",
+                "name": "Makilovers",
+                "description": "12 cortes (4 sabores a elección) + 6 Ebi furai",
+                "price": 38,
+                "discountedPrice": 30,
+                "cloudinary_id": "",
+                "url": "/images/maki.svg"
+            },
+            {
+                "id": "PRM003",
+                "name": "Barra Libre Makis",
+                "description": "Come todos los makis que puedas por un precio único. Válido de Lunes a Jueves.",
+                "price": 60,
+                "discountedPrice": 49.9,
+                "cloudinary_id": "",
+                "url": "/images/maki.svg"
+            },
+            {
+                "id": "PRM004",
+                "name": "Happy Hour Cocteles",
+                "description": "2x1 en toda nuestra carta de cocteles japoneses de 5pm a 8pm.",
+                "price": 30,
+                "discountedPrice": 15,
+                "cloudinary_id": "",
+                "url": "/images/maki.svg"
+            }
+        ]
+    }
+}
