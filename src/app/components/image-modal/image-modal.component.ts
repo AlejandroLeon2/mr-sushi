@@ -4,11 +4,13 @@ import { LucideAngularModule, X, ChevronLeft, ChevronRight } from 'lucide-angula
 
 export interface GalleryImage {
   id: string;
-  type: 'image' | 'video' | 'youtube';
+  type: 'image' | 'video' | 'video-link';
   url: string;
   thumbnailUrl?: string;
   title?: string;
   description?: string;
+  width?: number;
+  height?: number;
 }
 
 @Component({
@@ -31,7 +33,9 @@ export interface GalleryImage {
           </button>
 
           <!-- Main Media -->
-          <div class="relative w-full max-w-5xl h-3/4 flex items-center justify-center group pointer-events-auto">
+          <div class="relative w-full h-[70vh] flex items-center justify-center group pointer-events-auto transition-all duration-500"
+               [class.max-w-md]="isVertical()"
+               [class.max-w-5xl]="!isVertical()">
             
             <!-- Navigation Buttons -->
             <button (click)="prev($event)" 
@@ -50,9 +54,11 @@ export interface GalleryImage {
                     <source [src]="media.url" type="video/mp4">
                     Your browser does not support the video tag.
                   </video>
-                } @else if (media.type === 'youtube') {
+                } @else if (media.type === 'video-link') {
                   <iframe [src]="safeYoutubeUrl()" 
-                          class="w-full h-full max-w-4xl aspect-video" 
+                          class="w-full h-full shadow-2xl rounded-lg"
+                          [class.aspect-[9/16]]="isVertical()"
+                          [class.aspect-video]="!isVertical()" 
                           frameborder="0" 
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                           allowfullscreen>
@@ -94,22 +100,36 @@ export class ImageModalComponent {
   images = input.required<GalleryImage[]>();
   initialIndex = input<number>(0);
   isOpen = input<boolean>(false);
+  currentIndex = signal(0);
   close = output<void>();
 
-  currentIndex = signal(0);
-  safeYoutubeUrl = signal<SafeResourceUrl | null>(null);
-
   private sanitizer = inject(DomSanitizer);
+  safeYoutubeUrl = signal<SafeResourceUrl | null>(null);
 
   readonly X = X;
   readonly ChevronLeft = ChevronLeft;
   readonly ChevronRight = ChevronRight;
 
   currentImage = computed(() => {
-    const images = this.images();
-    const index = this.currentIndex();
-    if (!images || images.length === 0) return null;
-    return images[index];
+    const imgs = this.images();
+    const idx = this.currentIndex();
+    return imgs && imgs.length > idx ? imgs[idx] : null;
+  });
+
+  isVertical = computed(() => {
+    const media = this.currentImage();
+    if (!media) return false;
+    
+    const url = media.url.toLowerCase();
+    if (url.includes('reel') || url.includes('tiktok') || url.includes('short') || url.includes('height=476')) {
+      return true;
+    }
+    
+    if (media.height && media.width && media.height > media.width) {
+      return true;
+    }
+    
+    return false;
   });
 
   constructor() {
@@ -124,10 +144,10 @@ export class ImageModalComponent {
     this.currentIndex.set(index);
     const images = this.images();
     if (!images || images.length === 0) return;
-    
+
     const media = images[index];
-    
-    if (media?.type === 'youtube') {
+
+    if (media?.type === 'video-link') {
       let url = media.url;
       if (!url.includes('?')) url += '?autoplay=1';
       else url += '&autoplay=1';

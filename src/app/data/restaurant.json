@@ -1,9 +1,9 @@
 {
   "restaurant": {
-    "name": "Mr Sushi",
-    "slug": "mr-sushi",
+    "name": "MR NIKKEI6.9",
+    "slug": "mr-nikkei6.9",
     "template_id": "chifa",
-    "phone": "924932128",
+    "phone": "918778647",
     "address": "Av. Manchay Mz.D - Lt.14, Lima Metropolitana 15594",
     "location": {
       "lat": -12.113977,
@@ -12,8 +12,8 @@
   },
   "settings": {
     "whatsapp_config": {
-      "number": "924932128",
-      "message_template": "Hola Mr Sushi, quisiera ordenar:"
+      "number": "918778647",
+      "message_template": "Hola Mr Nikkei6.9, quisiera ordenar:"
     },
     "display_config": {
       "currency": "PEN",

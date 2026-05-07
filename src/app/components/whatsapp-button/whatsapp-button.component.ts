@@ -7,18 +7,21 @@ import { LucideAngularModule, MessageCircle } from 'lucide-angular';
   selector: 'app-whatsapp-button',
   standalone: true,
   imports: [LucideAngularModule],
-  templateUrl: './whatsapp-button.component.html'
+  templateUrl: './whatsapp-button.component.html',
 })
 export class WhatsAppButton {
   private readonly restaurantService = inject(RestaurantService);
   readonly MessageCircle = MessageCircle;
 
-  readonly phoneNumber = computed(() => 
-    this.restaurantService.whatsappConfig()?.number || ''
+  readonly phoneNumber = computed(() => this.restaurantService.whatsappConfig()?.number || '');
+
+  readonly message = computed(
+    () =>
+      this.restaurantService.whatsappConfig()?.message_template || 'Hola, me gustaría información',
   );
 
-  readonly message = computed(() => 
-    this.restaurantService.whatsappConfig()?.message_template || 'Hola, me gustaría información'
+  readonly whatsappUrl = computed(
+    () => `https://wa.me/51${this.phoneNumber()}?text=${encodeURIComponent(this.message())}`,
   );
 
   showTooltip = signal(false);
@@ -30,10 +33,5 @@ export class WhatsAppButton {
       // Ocultar después de otros 5 segundos
       setTimeout(() => this.showTooltip.set(false), 8000);
     }, 3000);
-  }
-
-  openWhatsApp() {
-    const url = `https://wa.me/51${this.phoneNumber()}?text=${encodeURIComponent(this.message())}`;
-    window.open(url, '_blank');
   }
 }

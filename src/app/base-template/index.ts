@@ -42,17 +42,17 @@ import { BlockPromotionsComponent } from './blocks/block-promotions';
     <app-layout-scale>
       <div class="bg-[url('/images/bg.png')] bg-repeat relative mx-2">
         @if (hasBlocks() || hasCombos() || hasPromotions()) {
-          <div class=" h-full w-auto mx-2">
-            <app-block-promotions 
-              [promotions]="promotions()" 
-              (addToCart)="addToCart.emit($event)">
+          <div class=" h-full w-auto mx-2 py-12">
+            <app-block-promotions
+              [promotions]="promotions()"
+              (productClick)="productClick.emit($event)"
+              (addToCart)="addToCart.emit($event)"
+            >
             </app-block-promotions>
 
-            <app-block-combos 
-              [combos]="combos()" 
-              (addToCart)="addToCart.emit($event)">
+            <app-block-combos [combos]="combos()" (addToCart)="addToCart.emit($event)">
             </app-block-combos>
-            
+
             @for (block of blocks(); track block.id) {
               @switch (block.id) {
                 @case ('block-1') {
@@ -115,7 +115,9 @@ import { BlockPromotionsComponent } from './blocks/block-promotions';
             }
           </div>
         } @else {
-          <div class="flex flex-col items-center justify-center py-20 text-secondary/60 italic font-medium">
+          <div
+            class="flex flex-col items-center justify-center py-20 text-secondary/60 italic font-medium"
+          >
             <p class="text-xl">Estamos actualizando nuestra carta...</p>
             <p class="text-sm mt-2">Danos un momento para prepararte lo mejor.</p>
           </div>

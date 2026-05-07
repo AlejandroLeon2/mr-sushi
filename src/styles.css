@@ -33,27 +33,29 @@
   --font-display: 'Makuton', sans-serif;
   --font-body: 'Noto Sans', sans-serif;
   /* Colores base */
-  --color-primary: #dc2626;       /* Rojo vibrante, moderno */
-  --color-secondary: #0a0a0a;     /* Negro Zinc 950, premium */
-  
+  --color-primary: #dc2626; /* Rojo vibrante, moderno */
+  --color-secondary: #0a0a0a; /* Negro Zinc 950, premium */
+
   /* Complementario */
-  --color-background: #fafafa;    /* Blanco suave para balance */
-  --color-surface: #f4f4f5;       /* Gris Zinc 100 para secciones */
-  
+  --color-background: #fafafa; /* Blanco suave para balance */
+  --color-surface: #f4f4f5; /* Gris Zinc 100 para secciones */
+
   /* Acentos */
-  --color-accent: #f59e0b;        /* Ámbar/Dorado, toque de elegancia */
-  --color-accent-muted: #fbbf24;  /* Ámbar suave para detalles */
+  --color-accent: #f59e0b; /* Ámbar/Dorado, toque de elegancia */
+  --color-accent-muted: #fbbf24; /* Ámbar suave para detalles */
 
   /* Texto */
-  --color-primary-text: #ffffff;  /* Texto sobre fondos oscuros */
-  --color-secondary-text: #0a0a0a;/* Texto sobre fondos claros */
-  --color-text-accent: #dc2626;   /* Destacar títulos o precios */
+  --color-primary-text: #ffffff; /* Texto sobre fondos oscuros */
+  --color-secondary-text: #0a0a0a; /* Texto sobre fondos claros */
+  --color-text-accent: #dc2626; /* Destacar títulos o precios */
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-[id^="category-"] {
-  scroll-margin-top: 140px; /* Offset for sticky nav */
+img {
+  -webkit-user-select: none;
+  user-select: none;
+  pointer-events: none;
 }

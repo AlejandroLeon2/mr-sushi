@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 
-import { Promotion } from '../components/promotion-card/promotion-card';
-import { PromotionCardComponent } from '../components/promotion-card/promotion-card';
+import { Promotion, PromotionCardComponent } from '../components/promotion-card/promotion-card';
+import { Product } from '../../core/models/product.model';
 import { TemplateSectionTitleComponent } from '../components/template-section-title/template-section-title.component';
 import { SliderComponent } from '../../components/slider/slider.component';
 
@@ -17,7 +17,10 @@ import { SliderComponent } from '../../components/slider/slider.component';
 
         <app-slider [showArrows]="true" [autoSlide]="false">
           @for (promotion of promotions(); track promotion.id) {
-            <app-promotion-card [promotion]="promotion" (addToCart)="addToCart.emit($event)">
+            <app-promotion-card 
+              [promotion]="promotion" 
+              (addToCart)="addToCart.emit($event)"
+              (productClick)="productClick.emit($event)">
             </app-promotion-card>
           }
         </app-slider>
@@ -31,4 +34,5 @@ export class BlockPromotionsComponent {
   title = input<string>('Promociones');
   description = input<string>('Aprovecha nuestras ofertas especiales');
   addToCart = output<Promotion>();
+  productClick = output<Product>();
 }

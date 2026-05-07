@@ -5,7 +5,7 @@
   <!-- Modal Container -->
   <!-- Mobile: Bottom Sheet (Rounded Top) | Desktop: Centered Modal (Full Rounded) -->
   <div
-    class="relative w-full max-w-4xl  md:max-h-[90vh] bg-white rounded-t-[2.5rem] md:rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row animate-in slide-in-from-bottom md:zoom-in duration-300">
+    class="relative w-full max-w-4xl  md:max-h-[90vh] bg-white rounded-t-[2.5rem] md:rounded-2xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-flow-col animate-in slide-in-from-bottom md:zoom-in duration-300">
 
     <!-- Background Chifa Decoration (Subtle) -->
     <div class="absolute inset-0 -z-10 bg-[#F4D5C4] opacity-40"></div>
@@ -15,21 +15,17 @@
       class="absolute top-4 right-4 p-2.5 rounded-full bg-white/90 shadow-lg hover:bg-white transition-all z-50 md:hidden">
       <lucide-icon [img]="X" class="w-6 h-6 text-secondary"></lucide-icon>
     </button>
-
+ @if (product().image_url) {
     <!-- 1. IMAGE SECTION -->
     <!-- Mobile: Small Top Banner or Hidden if too much content | Desktop: Full Side -->
-    <div class="w-full md:w-1/2 h-42 md:h-auto bg-neutral-200 relative overflow-hidden flex-shrink-0">
-      @if (product().image_url) {
+    <div class="w-full  h-42 md:h-auto bg-neutral-200 relative overflow-hidden flex-shrink-0">
+     
       <img [src]="product().image_url" [alt]="product().name" class="w-full h-full object-cover">
-      } @else {
-      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-secondary/10 to-secondary/30">
-        <lucide-icon [img]="ShoppingBag" class="w-12 md:w-24 h-12 md:h-24 text-secondary/20"></lucide-icon>
-      </div>
-      }
+  
     </div>
-
+    } 
     <!-- 2. CONTENT & ACTIONS SECTION -->
-    <div class="w-full md:w-1/2 flex flex-col relative bg-white md:bg-transparent overflow-hidden">
+    <div class="w-full min-w-120  flex flex-col relative bg-white md:bg-transparent overflow-hidden">
 
       <!-- Scrollable Body (Only if content exceeds space) -->
       <div class="flex-1 overflow-y-auto p-5 pb-4">

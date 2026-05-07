@@ -37,11 +37,21 @@ import { RestaurantService } from '../../../core/services/restaurant.service';
             >
               <lucide-icon [img]="MapPin" class="w-4 h-4 text-primary"></lucide-icon>
               <span class="text-xs font-bold uppercase tracking-wider mr-2">{{ address() }}</span>
+              
               <div class="flex items-center gap-3 border-l border-primary/20 pl-4 py-1">
-                <button (click)="copyAddress()" title="Copiar dirección" class="hover:text-primary transition-colors hover:scale-110">
+             
+              <button
+                  (click)="copyAddress()"
+                  title="Copiar dirección"
+                  class="hover:text-primary transition-colors hover:scale-110"
+                >
                   <lucide-icon [img]="Copy" class="w-4 h-4"></lucide-icon>
                 </button>
-                <button (click)="openMaps()" title="Ver en Google Maps" class="hover:text-primary transition-colors hover:scale-110">
+                <button
+                  (click)="openMaps()"
+                  title="Ver en Google Maps"
+                  class="hover:text-primary transition-colors hover:scale-110"
+                >
                   <lucide-icon [img]="Map" class="w-4 h-4"></lucide-icon>
                 </button>
               </div>
@@ -52,7 +62,24 @@ import { RestaurantService } from '../../../core/services/restaurant.service';
         <!-- Action Section -->
         <div class="flex flex-row md:flex-col items-start gap-4">
           <!-- Gallery Button -->
-          <a routerLink="/gallery"
+           <a
+            routerLink="/menu"
+            routerLinkActive="hidden"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="group flex rounded-sm hover:border-transparent border-2 gap-2 px-4 py-2 border-primary/80 hover:bg-primary items-center "
+          >
+            <lucide-icon
+              [img]="Utensils"
+              class="w-4 h-4 text-white group-hover:scale-110 transition-transform"
+            ></lucide-icon>
+
+            <span
+              class="text-lg text-white uppercase tracking-widest font-display transition-colors"
+              >Menu</span
+            >
+          </a>
+          <a
+            routerLink="/gallery"
             class="group flex rounded-sm hover:border-transparent border-2 gap-2 px-4 py-2 border-primary/80 hover:bg-primary items-center "
           >
             <lucide-icon

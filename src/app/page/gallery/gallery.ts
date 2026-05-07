@@ -31,9 +31,17 @@ import { RestaurantService } from '../../core/services/restaurant.service';
           <div (click)="openMedia(i)" 
                class="group relative aspect-square overflow-hidden rounded-sm bg-secondary border border-white/5 cursor-pointer shadow-2xl">
             
-            <img [src]="item.type === 'image' ? item.url : item.thumbnailUrl" 
-                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                 alt="Gallery item">
+            @if (item.type === 'image' || item.thumbnailUrl) {
+              <img [src]="item.type === 'image' ? item.url : item.thumbnailUrl" 
+                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                   alt="Gallery item">
+            } @else {
+              <!-- Video Placeholder when no thumbnail is available -->
+              <div class="w-full h-full flex flex-col items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors duration-500">
+                <lucide-icon [img]="Play" class="w-20 h-20 text-white/10 group-hover:text-primary/40 transition-all duration-700 transform group-hover:scale-125"></lucide-icon>
+                <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+            }
 
             <!-- Overlay -->
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
@@ -50,7 +58,7 @@ import { RestaurantService } from '../../core/services/restaurant.service';
                @if (item.type === 'image') {
                  <lucide-icon [img]="ImageIcon" class="w-6 h-6"></lucide-icon>
                } @else {
-                 <lucide-icon [img]="Play" class="w-6 h-6 ml-1"></lucide-icon>
+                 <lucide-icon [img]="Play" class="w-6 h-6 "></lucide-icon>
                }
             </div>
             

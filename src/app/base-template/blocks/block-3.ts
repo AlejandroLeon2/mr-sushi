@@ -11,21 +11,28 @@ import { TemplateSectionTitleComponent } from '../components/template-section-ti
   imports: [TemplateCardComponent, TemplateSectionTitleComponent],
   template: `
     @if (categories().length > 0) {
-      <section class="relative py-12  px-8  ">
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-x-12 gap-y-16 items-start">
-          @for (
-            cat of categories();
-            track cat.id;
-            let isLast = $last;
-            let total = $count
-          ) {
-            <section [id]="'category-' + cat.id" class="flex flex-col">
+      <section class="relative py-12  px-8  overflow-hidden  ">
+        <div class="relative grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-8 items-start">
+          <div class=" justify-between flex col-span-12 h-60  md:col-span-12 md:h-0">
+            <img
+              src="/images/alitas-fondo.png"
+              alt="Alitas Fondo"
+              class="h-full md:h-auto md:w-130 md:absolute top-10 -right-35"
+            />
+            <img
+              src="/images/alitas-2-fondo.png"
+              alt="Alitas 2 Fondo"
+              class="h-full md:h-auto md:w-130 md:absolute bottom-10 -right-35"
+            />
+          </div>
+          @for (cat of categories(); track cat.id; let isLast = $last; let total = $count) {
+            <section [id]="'category-' + cat.id" class="flex flex-col col-span-12 md:col-span-8 ">
               <app-template-section-title
                 [title]="cat.name"
                 [description]="cat.description || ''"
               ></app-template-section-title>
 
-              <div class="grid grid-cols-3 md:grid-cols-5 gap-8">
+              <div class="grid grid-cols-3 md:grid-cols-4 gap-6">
                 @for (product of cat.products; track product.id) {
                   <app-template-card
                     [product]="product"
