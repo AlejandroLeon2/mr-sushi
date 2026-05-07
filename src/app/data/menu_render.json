@@ -552,7 +552,7 @@
         "name": "Combo familiar",
         "description": "48 cortes (4 sabores a elección) + 2 gaseosa (250ml)",
         "price": 85,
-        "image": "/images/maki.svg"
+        "image": "/images/combos/combo-1.png"
       }
     ],
     "promotions": [
@@ -563,7 +563,7 @@
         "price": 33,
         "discountedPrice": 26,
         "cloudinary_id": "",
-        "url": "/images/maki.svg"
+        "url": "/images/combos/combo-1.png"
       },
       {
         "id": "PRM002",
@@ -572,7 +572,7 @@
         "price": 38,
         "discountedPrice": 30,
         "cloudinary_id": "",
-        "url": "/images/maki.svg"
+        "url": "/images/combos/combo-1.png"
       }
     ]
   }
