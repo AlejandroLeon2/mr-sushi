@@ -11,10 +11,10 @@ import { TemplateSectionTitleComponent } from '../components/template-section-ti
   imports: [TemplateCardComponent, TemplateSectionTitleComponent],
   template: `
     @if (categories().length > 0) {
-      <section class="relative py-12  px-8    ">
+      <section class="relative py-12  px-8 overflow-hidden ">
         <div class="grid grid-cols-5 md:grid-cols-12 md:gap-12 items-start">
           <div class="w-full relative h-full col-span-1 flex justify-center items-center md:col-span-4  ">
-            <img src="/images/cocteles-vertical.png" class="absolute md:static -left-60 min-w-[500px] md:min-w-[450px] h-auto " alt="">
+            <img src="/images/cocteles-vertical.png" class="absolute md:static -left-70 min-w-[500px] md:min-w-[450px] h-auto " alt="">
 
           </div>
 
