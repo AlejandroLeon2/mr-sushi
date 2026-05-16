@@ -1,0 +1,20 @@
+{
+  "data": {
+    "background": "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778818193/bg_eq0das.png",
+    "block1": {
+      "barco": "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778816911/fila-barco_akqyir.png",
+      "makis": [
+        "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778818276/fila-maki1_rsedzg.png",
+        "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778818309/fila-maki2_kgba4u.png",
+        "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778818343/fila-maki3_jnj7u0.png"
+      ]
+    },
+    "block3": {
+      "alitasFondo": "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778818397/alitas-fondo_qmtthi.png",
+      "alitas2Fondo": "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778818429/alitas-2-fondo_ixs9yi.png"
+    },
+    "block6": {
+      "coctelesVertical": "https://res.cloudinary.com/dxmiykoxh/image/upload/v1778818459/cocteles-vertical_eyxgzs.png"
+    }
+  }
+}

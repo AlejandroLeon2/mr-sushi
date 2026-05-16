@@ -1,7 +1,7 @@
 export interface PriceRangeEntry {
-  qty: number;
-  price: number;
-  bonus: string | null;
+  qty: number | string;
+  price: number | string;
+  bonus?: string | null;
 }
 
 export interface PriceRange {

@@ -1,4 +1,10 @@
+@if (isLoading()) {
+  <app-loading-screen></app-loading-screen>
+}
+
+<div [class.hidden]="isLoading()">
 <app-category-nav [categories]="allCategories()"></app-category-nav>
+
 
 <app-base-template 
   [blocks]="blocks()" 
@@ -26,3 +32,4 @@
 <!-- Restaurant Closed Modal -->
 <app-restaurant-closed-modal [isOpen]="isRestaurantClosed()" [businessHours]="businessHours()"
   (close)="closeClosedModal()"></app-restaurant-closed-modal>
+</div>

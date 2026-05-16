@@ -46,9 +46,9 @@ export class PromotionCardComponent {
       image_url: promo.url,
       qty_label: null,
       price_range_id: null,
-      is_favorite: false,
-      is_hidden: false,
-      tags: []
+      category_id: 'promotion',
+      cloudinary_id: promo.cloudinary_id,
+      is_hidden: false
     };
     this.productClick.emit(product);
   }

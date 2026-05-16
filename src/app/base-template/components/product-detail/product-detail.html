@@ -49,7 +49,13 @@
           </div>
 
           <!-- Price Range Options (Compact List) -->
-          @if (priceRange(); as range) {
+          @if (isLoadingRange()) {
+            <div class="space-y-3 animate-pulse">
+              <div class="h-4 w-24 bg-secondary/10 rounded"></div>
+              <div class="h-14 w-full bg-secondary/5 rounded-2xl"></div>
+              <div class="h-14 w-full bg-secondary/5 rounded-2xl"></div>
+            </div>
+          } @else if (priceRange(); as range) {
           <div class="space-y-2 md:space-y-3">
             <span class="text-xs  font-body font-bold uppercase tracking-[0.2em] text-secondary/60">Opciones
               disponibles</span>
@@ -86,7 +92,11 @@
         <div class="flex items-start justify-between mb-4 px-1">
           <div class="flex flex-col">
             <span class="text-3xl md:text-5xl font-display text-accent tracking-tighter leading-none">
-              {{ currentPrice() | precio }}
+              @if (currentPrice() !== null) {
+                {{ currentPrice() | precio }}
+              } @else {
+                <span class="opacity-20 animate-pulse">S/ --.--</span>
+              }
             </span>
             @if (selectedEntry(); as entry) {
             <span class="text-[10px] font-bold text-secondary/40 uppercase tracking-widest mt-1">
@@ -96,15 +106,16 @@
           </div>
 
           <!-- Quantity Selector -->
-          <div class="flex items-center gap-2  bg-secondary/5 p-1  rounded-xl border border-secondary/5">
+          <div class="flex items-center gap-2  bg-secondary/5 p-1  rounded-xl border border-secondary/5" [class.opacity-50]="isLoadingRange()">
             <button (click)="decrease()"
               class="w-8  h-8 flex items-center justify-center bg-white rounded-lg md:rounded-xl shadow-sm hover:text-accent disabled:opacity-30 transition-all"
-              [disabled]="quantity() <= 1">
+              [disabled]="quantity() <= 1 || isLoadingRange()">
               <lucide-icon [img]="Minus" class="w-3.5 md:w-5 h-3.5 "></lucide-icon>
             </button>
             <span class="w-4 md:w-6 text-center font-display text-lg md:text-2xl text-secondary">{{ quantity() }}</span>
             <button (click)="increase()"
-              class="w-8  h-8 flex items-center justify-center bg-white rounded-lg md:rounded-xl shadow-sm hover:text-accent transition-all">
+              class="w-8  h-8 flex items-center justify-center bg-white rounded-lg md:rounded-xl shadow-sm hover:text-accent transition-all"
+              [disabled]="isLoadingRange()">
               <lucide-icon [img]="Plus" class="w-3.5 md:w-5 h-3.5 "></lucide-icon>
             </button>
           </div>
@@ -113,16 +124,18 @@
         <!-- Row 2: Action Buttons -->
         <div class="flex gap-2">
           <button (click)="onAddToCart()"
-            class="flex-1 bg-accent hover:bg-accent-muted text-white py-3 rounded-sm font-display text-lg md:text-xl shadow-lg shadow-accent/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+            [disabled]="isLoadingRange()"
+            class="flex-1 bg-accent disabled:bg-secondary/20 disabled:text-secondary/40 hover:bg-accent-muted text-white py-3 rounded-sm font-display text-lg md:text-xl shadow-lg shadow-accent/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
             <lucide-icon [img]="ShoppingBag" class="w-5 h-5 md:w-6 h-6"></lucide-icon>
-            <span>Agregar</span>
+            <span>{{ isLoadingRange() ? 'Cargando...' : 'Agregar' }}</span>
           </button>
 
           <button (click)="orderViaWhatsApp()"
-            class="flex-1 bg-emerald-500 hover:bg-emerald-700 text-white py-3 rounded-sm font-display text-lg md:text-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+            [disabled]="isLoadingRange()"
+            class="flex-1 bg-emerald-500 disabled:bg-secondary/20 disabled:text-secondary/40 hover:bg-emerald-700 text-white py-3 rounded-sm font-display text-lg md:text-xl active:scale-[0.98] transition-all flex items-center justify-center gap-2"
             title="Pedir por WhatsApp">
             <lucide-icon [img]="MessageCircle" class="w-6 h-6 md:w-7 h-7"></lucide-icon>
-            <span>Pedir por WhatsApp</span>
+            <span>WhatsApp</span>
           </button>
         </div>
       </div>

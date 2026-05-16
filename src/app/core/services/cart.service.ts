@@ -49,11 +49,20 @@ export class Cart {
     if (existingItem) {
       this.updateQuantity(cartItemId, existingItem.quantity + quantity);
     } else {
+      const rawPrice = selectedEntry
+        ? Number(selectedEntry.price)
+        : Number(product.price);
+      const resolvedPrice = isNaN(rawPrice) ? 0 : rawPrice;
+
+      const entryLabel = selectedEntry
+        ? ` — ${selectedEntry.qty} und${Number(selectedEntry.qty) !== 1 ? 's' : ''}`
+        : '';
+
       const newItem: CartItem = {
         id: cartItemId,
         originalProductId: product.id,
-        name: selectedEntry ? `${product.name} (${selectedEntry.qty} unds)` : product.name,
-        price: selectedEntry ? selectedEntry.price : (product.price ?? 0),
+        name: `${product.name}${entryLabel}`,
+        price: resolvedPrice,
         quantity: quantity,
         image_url: product.image_url,
         selectedEntry: selectedEntry ? {

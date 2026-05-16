@@ -100,6 +100,7 @@ export class LayoutScaleComponent {
       this.measureAndUpdate();
       this.setupResizeObserver();
       this.setupWindowResize();
+      this.setupMutationObserver();
     });
 
     this.destroyRef.onDestroy(() => {
@@ -114,7 +115,11 @@ export class LayoutScaleComponent {
       this.resizeObserver = new ResizeObserver(() => {
         this.scheduleUpdate();
       });
+      // Observe both the host AND the inner element so we catch
+      // content growth from async data arriving after initial render.
       this.resizeObserver.observe(this.hostEl.nativeElement);
+      const innerEl = this.inner()?.nativeElement;
+      if (innerEl) this.resizeObserver.observe(innerEl);
     });
   }
 
@@ -126,6 +131,18 @@ export class LayoutScaleComponent {
     });
     this.destroyRef.onDestroy(() => {
       window.removeEventListener('resize', handler);
+    });
+  }
+
+  private setupMutationObserver(): void {
+    if (typeof MutationObserver === 'undefined') return;
+    const innerEl = this.inner()?.nativeElement;
+    if (!innerEl) return;
+
+    this.ngZone.runOutsideAngular(() => {
+      const mo = new MutationObserver(() => this.scheduleUpdate());
+      mo.observe(innerEl, { childList: true, subtree: true });
+      this.destroyRef.onDestroy(() => mo.disconnect());
     });
   }
 
@@ -146,7 +163,11 @@ export class LayoutScaleComponent {
       const naturalHeight = innerEl2.scrollHeight;
       const currentScale  = this.scale();
       const compensatedHeight = naturalHeight * currentScale;
-      this.wrapperHeight.set(`${compensatedHeight}px`);
+      // Only update if height actually changed to avoid unnecessary renders
+      const newHeight = `${compensatedHeight}px`;
+      if (this.wrapperHeight() !== newHeight) {
+        this.wrapperHeight.set(newHeight);
+      }
     });
   }
 }

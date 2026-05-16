@@ -1,67 +1,207 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { MenuResponse, PriceRangesResponse } from '../models/menu.model';
+import { map, catchError, shareReplay } from 'rxjs/operators';
+import {
+  MenuResponse,
+  PriceRangesResponse,
+  GalleryResponse,
+  TemplateImagesResponse,
+} from '../models/menu.model';
 import { RestaurantInfo } from '../models/restaurant.model';
 
 // Local data imports
 import menuDataLocal from '../../data/menu_render.json';
 import priceRangesLocal from '../../data/price_ranges.json';
 import restaurantLocal from '../../data/restaurant.json';
+import galleryLocal from '../../data/gallery.json';
+import templateImagesLocal from '../../data/template-images.json';
+import combosLocal from '../../data/combos.json';
+import promotionsLocal from '../../data/promotions.json';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MenuService {
-  /**
-   * Flag to toggle between local data and API data.
-   * false: use local JSON files in src/app/data
-   * true: use API calls
-   */
-  private useApi = false;
-  private apiUrl = 'https://api.mr-sushi.com/v1'; // Placeholder URL
+  private useApi = true;
+  private apiUrl =
+    'https://script.google.com/macros/s/AKfycbzec0QknPnChOZt7yHwVkQ3ZRqJsa1lVit4g2Bqoxy6ZcIRsD_NZEosuBISwiVZZMvL/exec';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  /**
-   * Set the data source flag.
-   * @param value boolean
-   */
+  // ─── Reactive price ranges store ────────────────────────────────────────────
+  private readonly _priceRanges = signal<import('../models/price-range.model').PriceRange[]>([]);
+  readonly priceRanges = this._priceRanges.asReadonly();
+
+  private priceRanges$?: Observable<PriceRangesResponse>;
+
+  loadPriceRanges(): void {
+    this.getPriceRanges().subscribe(response => {
+      // Ensure we only set the signal if we have an array of data
+      if (response && Array.isArray(response.data)) {
+        this._priceRanges.set(response.data);
+      } else {
+        console.warn('MenuService: price-ranges API did not return an array in the "data" property', response);
+      }
+    });
+  }
+
   setUseApi(value: boolean): void {
     this.useApi = value;
   }
 
-  /**
-   * Get the full menu data.
-   */
   getMenuData(): Observable<MenuResponse> {
     if (this.useApi) {
-      return this.http.get<MenuResponse>(`${this.apiUrl}/menu`);
+      return this.http.get<MenuResponse>(`${this.apiUrl}?json=menu`);
     } else {
-      // Wrap local data in an observable to maintain consistent return type
-      return of(menuDataLocal as MenuResponse);
+      return of(menuDataLocal as unknown as MenuResponse);
     }
   }
 
-  /**
-   * Get all price ranges.
-   */
   getPriceRanges(): Observable<PriceRangesResponse> {
-    if (this.useApi) {
-      return this.http.get<PriceRangesResponse>(`${this.apiUrl}/price-ranges`);
-    } else {
-      return of(priceRangesLocal as PriceRangesResponse);
+    if (!this.priceRanges$) {
+      const source$ = this.useApi
+        ? this.http.get<PriceRangesResponse>(`${this.apiUrl}?json=price-range`)
+        : of(priceRangesLocal as PriceRangesResponse);
+
+      this.priceRanges$ = source$.pipe(
+        shareReplay(1),
+        catchError(() => of({ data: [] }))
+      );
     }
+    return this.priceRanges$!;
   }
+
 
   /**
    * Get restaurant information and settings.
    */
   getRestaurantInfo(): Observable<RestaurantInfo> {
     if (this.useApi) {
-      return this.http.get<RestaurantInfo>(`${this.apiUrl}/restaurant`);
+      return this.http.get<any>(`${this.apiUrl}?json=settings`).pipe(
+        map(response => {
+          if (response && response.data && response.data.restaurant_name) {
+            const d = response.data;
+            // Map flat structure to nested RestaurantInfo
+            return {
+              data: {
+                restaurant: {
+                  name: d.restaurant_name,
+                  slug: d.restaurant_slug,
+                  template_id: 'default', // Fallback
+                  phone: String(d.restaurant_phone),
+                  address: d.restaurant_address,
+                  location: {
+                    lat: d.location_lat,
+                    lng: d.location_lng
+                  }
+                },
+                settings: {
+                  whatsapp_config: {
+                    number: String(d.whatsapp_number),
+                    message_template: d.whatsapp_message
+                  },
+                  display_config: {
+                    currency: 'PEN', // Fallback or read if available
+                    language: d.language
+                  },
+                  order_config: {
+                    enabled: d.order_enabled === 'Activo',
+                    delivery_fee: Number(d.delivery_fee),
+                    pickup_enabled: d.pickup_enabled === 'Activo',
+                    payment_methods: d.payment_methods || [],
+                    delivery_enabled: d.delivery_enabled === 'Activo',
+                    max_order_quantity: Number(d.max_order_quantity),
+                    accepts_reservations: d.accepts_reservations === 'Activo'
+                  },
+                  business_config: {
+                    social_media: {
+                      tiktok: d.tiktok || '',
+                      facebook: d.facebook || '',
+                      instagram: d.instagram || ''
+                    },
+                    business_hours: d.business_hours || {},
+                    delivery_zones: Array.isArray(d.delivery_zones) ? d.delivery_zones : []
+                  },
+                  description: d.description || '',
+                  tags: Array.isArray(d.tags) ? d.tags : [],
+                  logo_url: d.logo_url || null
+                }
+              }
+            } as RestaurantInfo;
+          }
+          return response as RestaurantInfo;
+        })
+      );
     } else {
       return of(restaurantLocal as RestaurantInfo);
+    }
+  }
+
+  /**
+   * Get gallery data.
+   */
+  getGalleryData(): Observable<GalleryResponse> {
+    if (this.useApi) {
+      return this.http.get<GalleryResponse>(`${this.apiUrl}?json=gallery`)
+        .pipe(
+          map(response => {
+            if (response && response.data) {
+              response.data = response.data.map((item: any) => ({
+                ...item,
+                type: item.type || 'image'
+              }));
+            }
+            return response;
+          })
+        );
+    } else {
+      return of(galleryLocal as GalleryResponse).pipe(
+        map(response => {
+          if (response && response.data) {
+            response.data = response.data.map((item: any) => ({
+              ...item,
+              type: item.type || 'image'
+            }));
+          }
+          return response;
+        })
+      );
+    }
+  }
+
+  /**
+   * Get template images data.
+   */
+  getTemplateImages(): Observable<TemplateImagesResponse> {
+
+    return of(templateImagesLocal as TemplateImagesResponse);
+
+  }
+
+  /**
+   * Get all combos.
+   */
+  getCombos(): Observable<{ data: any[] }> {
+    if (this.useApi) {
+      return this.http.get<{ data: any[] }>(`${this.apiUrl}?json=combos`).pipe(
+        catchError(() => of({ data: [] }))
+      );
+    } else {
+      return of(combosLocal as { data: any[] });
+    }
+  }
+
+  /**
+   * Get all promotions.
+   */
+  getPromotions(): Observable<{ data: any[] }> {
+    if (this.useApi) {
+      return this.http.get<{ data: any[] }>(`${this.apiUrl}?json=promotions`).pipe(
+        catchError(() => of({ data: [] }))
+      );
+    } else {
+      return of(promotionsLocal as { data: any[] });
     }
   }
 }

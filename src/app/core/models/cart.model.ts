@@ -6,8 +6,8 @@ export interface CartItem {
   quantity: number;
   image_url: string | null;
   selectedEntry?: {
-    qty: number;
-    price: number;
-    bonus: string | null;
+    qty: number | string;
+    price: number | string;
+    bonus?: string | null;
   };
 }

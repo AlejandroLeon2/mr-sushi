@@ -9,7 +9,8 @@ export interface Combo {
   name: string;
   description: string;
   price: number;
-  image: string;
+  url: string;
+  cloudinary_id: string;
 }
 
 @Component({

@@ -1,9 +1,18 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  inject,
+  signal,
+  OnInit,
+} from '@angular/core';
 
 import { Product } from '../../core/models/product.model';
 import { Category } from '../../core/models/category.model';
 import { TemplateCardComponent } from '../components/template-card/template-card';
 import { TemplateSectionTitleComponent } from '../components/template-section-title/template-section-title.component';
+import { MenuService } from '../../core/services/menu.service';
 
 @Component({
   selector: 'app-block-3',
@@ -15,12 +24,12 @@ import { TemplateSectionTitleComponent } from '../components/template-section-ti
         <div class="relative grid grid-cols-1 md:grid-cols-12 gap-x-12 gap-y-8 items-start">
           <div class=" justify-between flex col-span-12 h-60  md:col-span-12 md:h-0">
             <img
-              src="/images/alitas-fondo.png"
+              [src]="alitasFondo()"
               alt="Alitas Fondo"
               class="h-full md:h-auto md:w-130 md:absolute top-10 -right-35"
             />
             <img
-              src="/images/alitas-2-fondo.png"
+              [src]="alitas2Fondo()"
               alt="Alitas 2 Fondo"
               class="h-full md:h-auto md:w-130 md:absolute bottom-10 -right-35"
             />
@@ -50,11 +59,25 @@ import { TemplateSectionTitleComponent } from '../components/template-section-ti
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Block3Component {
+export class Block3Component implements OnInit {
+  private readonly menuService = inject(MenuService);
+
   categories = input.required<Category[]>();
   templateData = input<any>();
   productClick = output<Product>();
   addToCart = output<Product>();
+
+  alitasFondo = signal('/images/alitas-fondo.png');
+  alitas2Fondo = signal('/images/alitas-2-fondo.png');
+
+  ngOnInit(): void {
+    this.menuService.getTemplateImages().subscribe((data) => {
+      if (data.data?.block3) {
+        this.alitasFondo.set(data.data.block3.alitasFondo);
+        this.alitas2Fondo.set(data.data.block3.alitas2Fondo);
+      }
+    });
+  }
 
   protected get images() {
     return this.templateData()?.blocks?.[2]?.block3 || [];

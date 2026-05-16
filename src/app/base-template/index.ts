@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, input, output, computed } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  computed,
+  inject,
+  signal,
+  OnInit,
+} from '@angular/core';
 
 import { Product } from '../core/models/product.model';
 import { Block } from '../core/models/block.model';
@@ -7,6 +16,7 @@ import { TemplateFooter } from './components/footer/footer';
 import { LayoutScaleComponent } from '../layout/layout-scale/layout-scale';
 import { Combo } from './components/combo-card/combo-card';
 import { Promotion } from './components/promotion-card/promotion-card';
+import { MenuService } from '../core/services/menu.service';
 
 // Block Components
 import { Block1Component } from './blocks/block-1';
@@ -40,7 +50,10 @@ import { BlockPromotionsComponent } from './blocks/block-promotions';
     <app-template-header></app-template-header>
 
     <app-layout-scale>
-      <div class="bg-[url('/images/bg.png')] bg-repeat relative mx-2">
+      <div
+        [style]="'background-image: url(' + backgroundImage() + ')'"
+        class="bg-repeat relative mx-2"
+      >
         @if (hasBlocks() || hasCombos() || hasPromotions()) {
           <div class=" h-full w-auto mx-2 py-12">
             <app-block-promotions
@@ -116,7 +129,7 @@ import { BlockPromotionsComponent } from './blocks/block-promotions';
           </div>
         } @else {
           <div
-            class="flex flex-col items-center justify-center py-20 text-secondary/60 italic font-medium"
+            class="flex flex-col items-center justify-center py-20 text-white italic font-medium"
           >
             <p class="text-xl">Estamos actualizando nuestra carta...</p>
             <p class="text-sm mt-2">Danos un momento para prepararte lo mejor.</p>
@@ -128,13 +141,25 @@ import { BlockPromotionsComponent } from './blocks/block-promotions';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseTemplate {
+export class BaseTemplate implements OnInit {
+  private readonly menuService = inject(MenuService);
+
   blocks = input.required<Block[]>();
   templateData = input<any>();
   combos = input<Combo[]>([]);
   promotions = input<Promotion[]>([]);
   productClick = output<Product>();
   addToCart = output<Product | Combo | Promotion>();
+
+  backgroundImage = signal('/images/bg.png');
+
+  ngOnInit(): void {
+    this.menuService.getTemplateImages().subscribe((data) => {
+      if (data.data?.background) {
+        this.backgroundImage.set(data.data.background);
+      }
+    });
+  }
 
   protected hasBlocks = computed(() => this.blocks().length > 0);
   protected hasCombos = computed(() => this.combos().length > 0);

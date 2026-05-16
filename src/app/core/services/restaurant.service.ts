@@ -22,8 +22,8 @@ export class RestaurantService {
   }
 
   // Exposed signals
-  readonly restaurant = computed(() => this._restaurantInfo()?.restaurant);
-  readonly settings = computed(() => this._restaurantInfo()?.settings);
+  readonly restaurant = computed(() => this._restaurantInfo()?.data.restaurant);
+  readonly settings = computed(() => this._restaurantInfo()?.data.settings);
   
   readonly orderConfig = computed(() => this.settings()?.order_config);
   readonly whatsappConfig = computed(() => this.settings()?.whatsapp_config);

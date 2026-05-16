@@ -1,9 +1,18 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+  inject,
+  signal,
+  OnInit,
+} from '@angular/core';
 
 import { Product } from '../../core/models/product.model';
 import { Category } from '../../core/models/category.model';
 import { TemplateCardComponent } from '../components/template-card/template-card';
 import { TemplateSectionTitleComponent } from '../components/template-section-title/template-section-title.component';
+import { MenuService } from '../../core/services/menu.service';
 
 @Component({
   selector: 'app-block-6',
@@ -13,14 +22,22 @@ import { TemplateSectionTitleComponent } from '../components/template-section-ti
     @if (categories().length > 0) {
       <section class="relative py-12  px-8 overflow-hidden ">
         <div class="grid grid-cols-5 md:grid-cols-12 md:gap-12 items-start">
-          <div class="w-full relative h-full col-span-1 flex justify-center items-center md:col-span-4  ">
-            <img src="/images/cocteles-vertical.png" class="absolute md:static -left-70 min-w-[500px] md:min-w-[450px] h-auto " alt="">
-
+          <div
+            class="w-full relative h-full col-span-1 flex justify-center items-center md:col-span-4  "
+          >
+            <img
+              [src]="coctelesVertical()"
+              class="absolute md:static -left-70 min-w-[500px] md:min-w-[450px] h-auto "
+              alt=""
+            />
           </div>
 
           @for (cat of categories(); track cat.id; let isLast = $last; let total = $count) {
-          <section [id]="'category-' + cat.id" class="flex flex-col w-full col-span-4 md:col-span-8">
-            <app-template-section-title
+            <section
+              [id]="'category-' + cat.id"
+              class="flex flex-col w-full col-span-4 md:col-span-8"
+            >
+              <app-template-section-title
                 [title]="cat.name"
                 [description]="cat.description || ''"
               ></app-template-section-title>
@@ -43,13 +60,21 @@ import { TemplateSectionTitleComponent } from '../components/template-section-ti
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Block6Component {
+export class Block6Component implements OnInit {
+  private readonly menuService = inject(MenuService);
+
   categories = input.required<Category[]>();
   templateData = input<any>();
   productClick = output<Product>();
   addToCart = output<Product>();
 
+  coctelesVertical = signal('/images/cocteles-vertical.png');
 
-
-
+  ngOnInit(): void {
+    this.menuService.getTemplateImages().subscribe((data) => {
+      if (data.data?.block6) {
+        this.coctelesVertical.set(data.data.block6.coctelesVertical);
+      }
+    });
+  }
 }
