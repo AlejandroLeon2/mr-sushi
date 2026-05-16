@@ -25,7 +25,7 @@ import promotionsLocal from '../../data/promotions.json';
 export class MenuService {
   private useApi = true;
   private apiUrl =
-    'https://script.google.com/macros/s/AKfycbzec0QknPnChOZt7yHwVkQ3ZRqJsa1lVit4g2Bqoxy6ZcIRsD_NZEosuBISwiVZZMvL/exec';
+    'https://script.google.com/macros/s/AKfycbxKbus4qKuMpzvdqA4lePCmCPBx6FOKvEBhRMrn7MxUUq81i5WoqROozwwLPxTRmNE-sA/exec';
 
   constructor(private http: HttpClient) { }
 
